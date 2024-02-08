@@ -1,6 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
-
+const path = require("path")
 const cors = require("cors")
 
 require("dotenv").config({ path: "./.env" })
@@ -16,6 +16,7 @@ const app = express()//body parse sathi express() je pn return krete app store h
 //middleware
 
 app.use(express.json()) //front and backden conncation sathi
+app.use(express.static(path.join(__dirname, "dist", "index.html")))
 app.use(cors())
 
 //routes
@@ -24,8 +25,8 @@ app.use("/api/admin", require("./routes/adminRoute"))
 
 //404
 app.use("*", (req, res) => {
-
-    res.status(404).json({ message: "resource not found" })
+    res.sendFile(path.join(__dirname, "dist", "index.html"))  //backent mdheun file front la  file padvachi asel teva
+    // res.status(404).json({ message: "resource not found" })
 })
 //error handalder
 app.use((err, req, res, next) => {
