@@ -16,7 +16,7 @@ const app = express()//body parse sathi express() je pn return krete app store h
 //middleware
 
 app.use(express.json()) //front and backden conncation sathi
-app.use(express.static(path.join(__dirname, "dist", "index.html")))
+app.use(express.static(path.join(__dirname, "dist")))
 app.use(cors())
 
 //routes
